@@ -1,0 +1,62 @@
+{
+      "data": [
+            {
+                  "alphabet": "A",
+                  "items": [
+                        {
+                              "text": "APPLE",
+                              "img": ""
+                        },
+                        {
+                              "text": "ANT",
+                              "img": ""
+                        }
+                  ]
+            },
+            {
+                  "alphabet": "B",
+                  "items": [
+                        {
+                              "text": "BALL",
+                              "img": ""
+                        }
+                  ]
+            },
+            {
+                  "alphabet": "C",
+                  "items": [
+                        {
+                              "text": "CAT",
+                              "img": ""
+                        }
+                  ]
+            },
+            {
+                  "alphabet": "D",
+                  "items": [
+                        {
+                              "text": "DUCK",
+                              "img": ""
+                        }
+                  ]
+            },
+            {
+                  "alphabet": "E",
+                  "items": [
+                        {
+                              "text": "ELEPHANT",
+                              "img": ""
+                        }
+                  ]
+            },
+            {
+                  "alphabet": "F",
+                  "items": [
+                        {
+                              "text": "FISH",
+                              "img": ""
+                        }
+                  ]
+            }
+      ]
+}

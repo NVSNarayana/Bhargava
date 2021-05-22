@@ -1,0 +1,19 @@
+<div class="comp-container">
+      <div class="input-container">
+            <div class="btn-set-div"><button class="btn-set btn-radius-12"
+                  (click)="changeCase($event, false)">UPPER CASE </button></div>
+            <div class="btn-set-div"><button class="btn-set btn-radius-12"
+                  (click)="changeCase($event, true)">lower case </button></div>
+      </div>
+      <div class="btn-container">
+            <div class="item">
+                  <button class="btn-radius-12" (click)="start($event)">Start</button>
+            </div>
+            <div class="item">
+                  <button class="btn-stop btn-radius-12" (click)="stop($event)">Stop</button>
+            </div>
+      </div>
+      <div class="current-result">
+            <div id="currentResult">{{currentAlphabet}}</div>
+      </div>
+</div>
