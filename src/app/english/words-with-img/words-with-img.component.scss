@@ -1,6 +1,21 @@
+.comp-container1 {
+      .settings {
+            .label-cursor {
+                  cursor: pointer;
+            }
+
+            
+      }
+}
+
+.btn-set-val {
+      padding: 0.2rem 1rem;
+}
+
 .current-result {
       align-items: flex-start;
       border     : none;
+      padding    : 0rem;
 
       #currentResult {
 
@@ -17,20 +32,39 @@
       }
 }
 
-.input-container {
-      display  : flex;
-      padding  : 20px 0px;
-      font-size: 2rem;
 
-      input {
-            padding    : 6px;
-            font-size  : 25px;
-            width      : 150px;
-            margin-left: 5px;
+::ng-deep {
+      .p-carousel-items-content {
+            width: 45rem !important;
       }
 
-      .btn-set-div {
-            margin-top: -3px;
+      .p-inputtext {
+            padding: 0.2rem;
+      }
+}
+
+.word-item {
+      .word-item-content {
+            border       : 1px solid var(--surface-d);
+            border-radius: 3px;
+            margin       : .3rem;
+            text-align   : center;
+            padding      : 1rem 0;
       }
 
+      .header {
+            font-size  : 3rem;
+            font-weight: bold;
+            color      : black;
+      }
+
+      .image {
+            width : 25rem;
+            height: 25rem;
+      }
+
+      .text {
+            font-size: 2rem;
+            color    : black;
+      }
 }

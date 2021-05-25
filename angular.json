@@ -22,18 +22,27 @@
                                     "main": "src/main.ts",
                                     "polyfills": "src/polyfills.ts",
                                     "tsConfig": "tsconfig.app.json",
-                                    "aot": true,
                                     "assets": [
                                           "src/favicon.ico",
                                           "src/assets"
                                     ],
                                     "styles": [
                                           "node_modules/font-awesome/css/font-awesome.min.css",
+                                          "node_modules/primeng/resources/themes/saga-blue/theme.css",
+                                          "node_modules/primeng/resources/primeng.min.css",
+                                          "node_modules/primeflex/primeflex.css",
+                                          "node_modules/primeicons/primeicons.css",
                                           "src/styles.scss"
                                     ],
                                     "scripts": [
                                           "node_modules/jquery/dist/jquery.min.js"
-                                    ]
+                                    ],
+                                    "vendorChunk": true,
+                                    "extractLicenses": false,
+                                    "buildOptimizer": false,
+                                    "sourceMap": true,
+                                    "optimization": false,
+                                    "namedChunks": true
                               },
                               "configurations": {
                                     "production": {
@@ -46,7 +55,6 @@
                                           "optimization": true,
                                           "outputHashing": "all",
                                           "sourceMap": false,
-                                          "extractCss": true,
                                           "namedChunks": false,
                                           "extractLicenses": true,
                                           "vendorChunk": false,

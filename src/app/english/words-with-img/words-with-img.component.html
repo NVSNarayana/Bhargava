@@ -1,52 +1,59 @@
-<div class="comp-container">
-      <div class="input-container">
-            <div>Start from: </div>
-            <div><input [(ngModel)]="startFrom"></div>
-            <div class="btn-set-div"><button class="btn-set btn-radius-12"
-                  (click)="updateCurrentNumber($event)">Set </button></div>
-      </div>
-      <div class="btn-container">
-            <div class="item">
-                  <button class="btn-radius-12" (click)="start($event)">Start</button>
-            </div>
-            <div class="item">
-                  <button class="btn-stop btn-radius-12" (click)="stop($event)">Stop</button>
-            </div>
-      </div>
-      <div class="current-result">
-            <div id="currentResult">
-                  <div *ngIf="currentItem" class="items">
-                        <div class="item">{{currentItem.alphabet}}</div>
-                        <div class="item" *ngFor="let item of currentItem.items">
-                              {{item}}
+<div class="comp-container1" class="p-d-flex">
+      <div class="p-mr-2 settings">
+            <p-panel>
+                  <ng-template pTemplate="header">
+                        Settings
+                  </ng-template>
+                  <div class="p-d-flex p-flex-column">
+                        <div class="p-mb-5 p-d-flex">
+                              <div class="p-mr-5"><label class="label-cursor">
+                                          <p-checkbox  [binary]="true" [(ngModel)]="autoPlay" (onChange)="updateAutoPlay($event);"></p-checkbox>
+                                          Auto
+                                          Play
+                                    </label></div>
+                              <div class="p-mr-5"><label class="label-cursor">
+                                          <p-checkbox [binary]="true" [(ngModel)]="shouldSpeak" (onChange)="updateShouldSpeak($event);"></p-checkbox>
+                                          Should Speak
+
+                                    </label></div>
+
+                        </div>
+                        <div class="p-mb-2 p-d-flex">
+                              <div class="p-mr-2">From Letter: </div>
+                              <div class="p-mr-2"> <input type="text" pInputText [(ngModel)]="startFrom" /></div>
+                              <div class="p-mr-2">
+                                    <button pButton type="button" class="p-button-raised btn-set-val" label="SET"
+                                          (click)="updateStartFrom($event)"></button>
+                              </div>
                         </div>
                   </div>
+            </p-panel>
 
-                  <div>
-                        <p-carousel [value]="currentItem.items" [numVisible]="3" [numScroll]="1" [circular]="false">
+      </div>
+
+      <div class="p-mr-2 current-result">
+            <div id="currentResult">
+                  <div *ngIf="items">
+                        <p-carousel #slider [value]="items" [numVisible]="1" [autoplayInterval]="autoplayInterval" 
+                              [page]="currentPage" [numScroll]="1" [circular]="true" [showIndicators]="false"
+                              (onPage)="pageChanged($event)">
                               <ng-template pTemplate="header">
-                                  <h5>Basic</h5>
                               </ng-template>
-                              <ng-template let-product pTemplate="item">
-                                  <div class="product-item">
-                                      <div class="product-item-content">
-                                          <div class="p-mb-3">
+                              <ng-template let-word pTemplate="item">
+                                    <div class="word-item">
+                                          <div class="word-item-content">
+                                                <!-- <div class="p-mb-3"></div> -->
+                                                <div>
+                                                      <div class="header">{{word.alphabet}}</div>
+                                                      <img class="image" [src]="word.img">
+                                                      <div class="p-mt-0 p-mb-3 text">{{word.text}}</div>
+                                                </div>
                                           </div>
-                                          <div>
-                                              <h4 class="p-mb-1">{{product.name}}</h4>
-                                              <h6 class="p-mt-0 p-mb-3">${{product.price}}</h6>
-                                              <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                                              <div class="car-buttons p-mt-5">
-                                                  <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
-                                                  <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
-                                                  <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
+                                    </div>
                               </ng-template>
-                          </p-carousel>
+                        </p-carousel>
                   </div>
             </div>
+
       </div>
 </div>

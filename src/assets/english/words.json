@@ -5,11 +5,27 @@
                   "items": [
                         {
                               "text": "APPLE",
-                              "img": ""
+                              "img": "apple.jpg"
                         },
                         {
                               "text": "ANT",
-                              "img": ""
+                              "img": "ant.jpg"
+                        },
+                        {
+                              "text": "ARROW",
+                              "img": "arrow.png"
+                        },
+                        {
+                              "text": "ALLIGATOR",
+                              "img": "alligator.jpg"
+                        },
+                        {
+                              "text": "APRON",
+                              "img": "apron.png"
+                        },
+                        {
+                              "text": "AEROPLANE",
+                              "img": "aeroplane.jpg"
                         }
                   ]
             },
@@ -17,8 +33,32 @@
                   "alphabet": "B",
                   "items": [
                         {
-                              "text": "BALL",
-                              "img": ""
+                              "text": "BASKET",
+                              "img": "basket.jpg"
+                        },
+                        {
+                              "text": "BUTTERFLY",
+                              "img": "butterfly.jpg"
+                        },
+                        {
+                              "text": "BELT",
+                              "img": "belt.jpg"
+                        },
+                        {
+                              "text": "BUS",
+                              "img": "bus.jpg"
+                        },
+                        {
+                              "text": "BANANA",
+                              "img": "banana.jpg"
+                        },
+                        {
+                              "text": "BAT",
+                              "img": "bat.jpg"
+                        },
+                        {
+                              "text": "BOUQUET",
+                              "img": "bouquet.jpg"
                         }
                   ]
             },
@@ -26,8 +66,32 @@
                   "alphabet": "C",
                   "items": [
                         {
+                              "text": "CHOCOLATE",
+                              "img": "chocolate.jpg"
+                        },
+                        {
                               "text": "CAT",
-                              "img": ""
+                              "img": "cat.jpg"
+                        },
+                        {
+                              "text": "CHAIR",
+                              "img": "chair.jpg"
+                        },
+                        {
+                              "text": "CAR",
+                              "img": "car.jpg"
+                        },
+                        {
+                              "text": "CANDLE",
+                              "img": "candle.jpg"
+                        },
+                        {
+                              "text": "CAMERA",
+                              "img": "camera.jpg"
+                        },
+                        {
+                              "text": "CHICK",
+                              "img": "chick.jpg"
                         }
                   ]
             },
@@ -36,7 +100,7 @@
                   "items": [
                         {
                               "text": "DUCK",
-                              "img": ""
+                              "img": "apple.jpg"
                         }
                   ]
             },
@@ -45,7 +109,7 @@
                   "items": [
                         {
                               "text": "ELEPHANT",
-                              "img": ""
+                              "img": "apple.jpg"
                         }
                   ]
             },
@@ -54,7 +118,7 @@
                   "items": [
                         {
                               "text": "FISH",
-                              "img": ""
+                              "img": "apple.jpg"
                         }
                   ]
             }

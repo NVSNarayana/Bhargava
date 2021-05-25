@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { EnglishWord } from 'src/app/core/models/english-word';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription, timer } from 'rxjs';
+import { Carousel } from 'primeng/carousel';
+
+import { EnglishWord, EnglishWordWithImg } from 'src/app/core/models/english-word';
 import { VoiceText, VoiceTextFrom } from 'src/app/core/models/voice-text';
 import { EnglishService } from 'src/app/core/services/english/english.service';
 import { TextSpeakService } from 'src/app/core/services/text-speak.service';
@@ -15,19 +17,23 @@ export class WordsWithImgComponent implements OnInit {
   private subscriptions: Array<Subscription> = [];
   private words: Array<EnglishWord> = [];
   private currentNo = 0;
-  startFrom = 0;
+  currentPage = 0;
+  startFrom = 'A';
   currentItem: EnglishWord;
-  isStopped = false;
+  items: Array<EnglishWordWithImg> = [];
+  @ViewChild('slider', { read: Carousel }) slider: Carousel;
+  autoplayInterval = 0;
+  autoPlay = false;
+  shouldSpeak = false;
 
-  constructor(private textSpeakSvc: TextSpeakService, private englishSvc: EnglishService) { }
+  constructor(private textSpeakSvc: TextSpeakService,
+    private englishSvc: EnglishService) {
+
+  }
 
   ngOnInit(): void {
-    this.updateCurrentNumber(undefined);
-    this.englishSvc.getWords().subscribe(v => {
-      if (v && v.data) {
-        this.words = v.data;
-      }
-    });
+    this.updateStartFrom(undefined);
+
     this.subscribeEvents();
   }
 
@@ -35,27 +41,43 @@ export class WordsWithImgComponent implements OnInit {
     this.unsubscribeEvents();
   }
 
-  updateCurrentNumber(e: Event): void {
-    this.currentNo = this.startFrom;
+  updateAutoPlay(e: { checked: boolean, originalEvent: MouseEvent }): void {
+    this.autoPlay = e.checked;
+    this.items = undefined;
+    this.autoplayInterval = e.checked ? 3000 : 0;
+    timer(2000).subscribe(t => {
+      this.items = this.getItems();
+    });
   }
 
-  start(e: Event): void {
-    if (e) { this.isStopped = false; }
-    if (this.isStopped) { return; }
-    if (!this.words) { return; }
-    this.textSpeakSvc.startSpeak(this.getCurrentSpeachText(), VoiceTextFrom.EnglishWordsWithImg);
-    if (this.words.length === this.currentNo) { this.currentNo = 0; }
+  updateShouldSpeak(e: { checked: boolean, originalEvent: MouseEvent }): void {
+    this.shouldSpeak = e.checked;
+  }
+  
+
+  pageChanged(e: Event) {
+    console.log(e);
+    this.handleShouldSpeak(e as any);
   }
 
-  stop(e: Event): void {
-    this.isStopped = true;
+  updateStartFrom(e: Event): void {
+    const index = this.items.findIndex(v => v.alphabet.includes(this.startFrom));
+    if (index >= 0) {
+      this.currentPage = index;
+    }
   }
 
   subscribeEvents(): void {
+    this.englishSvc.getWords().subscribe(v => {
+      if (v && v.data) {
+        this.words = v.data;
+        this.items = this.getItems();
+      }
+    });
     this.subscriptions.push(this.textSpeakSvc.speakDoneObservable().subscribe((v: VoiceText) => {
       console.log('form english words obs: ', v);
       if (!v || v.from !== VoiceTextFrom.EnglishWordsWithImg) { return; }
-      this.start(null);
+      // this.start(null);
     }));
   }
 
@@ -69,6 +91,13 @@ export class WordsWithImgComponent implements OnInit {
     this.currentItem = this.words[this.currentNo++];
   }
 
+  private handleShouldSpeak(e: { page: number }): void {
+    if(!this.shouldSpeak){ return;}
+    if (!e || !this.items || this.items.length === 0) { return }
+    const item = this.items[e.page];
+    this.textSpeakSvc.startSpeak(item.text, VoiceTextFrom.EnglishWordsWithImg);
+  }
+
   private getCurrentSpeachText(): string {
     this.setCurrentItem();
     let voiceText = `${this.currentItem.alphabet}`;
@@ -78,4 +107,15 @@ export class WordsWithImgComponent implements OnInit {
     return voiceText;
   }
 
+  private getItems(): Array<EnglishWordWithImg> {
+    if (!this.words || this.words.length === 0) { return []; }
+    const arrWordsWithImgs = this.words.map(v => {
+      const arr = [];
+      v.items.forEach(i => {
+        arr.push(new EnglishWordWithImg({ alphabet: `${v.alphabet} ${v.alphabet.toLocaleLowerCase()}`, text: i.text.toLocaleLowerCase(), img: `assets/english/imgs/${i.img}` }));
+      });
+      return arr;
+    });
+    return [].concat.apply([], arrWordsWithImgs);
+  }
 }
